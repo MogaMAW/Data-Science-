@@ -1,5 +1,5 @@
 # import a dataset
-#set working directory
+#set working directory.
 setwd("C:/Users/Student/Desktop/a96447/Datasets")
 co2_emissions_dataset <- read.csv("co2_emissions_tonnes_per_person.csv")
 #questiion 1.
