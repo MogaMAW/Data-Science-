@@ -24,7 +24,7 @@ variables <- c("FRAGRANCE/AROMA", "FLAVOR", "SALT/ ACID","BITTER/ SWEET","AFTERT
 variable.mean <- c(AromaMean,FlavorMean,SaltAcidMean,BitterSweetMean,AftertasteMean,MouthfeelMean)
 variable_data <- data.frame(variables,variable.mean)
 View(variable_data)
-#plotting the mean of the variables
+##plotting the mean of the variables
 ggplot(variable_data, aes(x = variables, y = variable.mean)) + 
     geom_bar(stat = "identity", fill = "#0044ff") + labs(title = "Mean of the variables", x = "Variables", y = "Mean")
 
