@@ -1,0 +1,292 @@
+
+
+
+---
+output:
+  html_document: default
+ 
+  pdf_document: default
+---
+
+  
+
+```{r echo=FALSE}
+
+  
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(ggpubr)
+```
+# Assignment1 
+### Population of the data set are the origins 
+
+### Samples are the varieties 
+
+### Observations are the Flavor/aroma, fragrance,mouth feel,aftertaste ,overall ,salt/acid,bitter/sweet ,balance, uniformity ,clean cups
+
+### Research question :Does performance of varieties vary in different districts ?
+
+### Null Hypothesis:performance of varieties varies in different districts
+
+### Alternative Hypothesis:performance of varieties doesnot vary in different districts
+
+## **1.Descriptive Statistics**
+```{r, include=FALSE}
+library(readxl)
+
+dataset<- read_excel(("C:/Users/DELL/Desktop/Data-Science-/Group Assignment 1_Cup sensory results-CWDr lines (1).xlsx"))
+
+summary(dataset)
+
+
+```
+
+- Calculate the  mode  of the overall
+#### Mode
+
+```{r echo=FALSE}
+
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+# Create the vector (v) with overall.
+v <- c(dataset$OVERALL)
+# Calculate the mode using the user function.
+getmode(v)
+
+```
+ variance and Standard deviation  for overall respectively
+```{r echo=FALSE}
+var(dataset$OVERALL)
+sd((dataset$OVERALL))
+
+
+
+```
+
+## Summary of performance in the different regions
+
+- Ibanda summary statistics
+
+```{r echo=FALSE}
+Ibanda <- dataset[dataset$ORIGIN == "Ibanda",]
+View(Ibanda)
+summary(Ibanda$OVERALL)
+```
+- Mityana summary statistics
+```{r echo=FALSE}
+Mityana <- dataset[dataset$ORIGIN == "Mityana",]
+View(Mityana)
+summary(Mityana$OVERALL)
+```
+- Mukono summary statistics
+```{r echo=FALSE}
+Mukono <- dataset[dataset$ORIGIN == "Mukono",]
+View(Mukono)
+summary(Mukono$OVERALL)
+```
+
+
+
+- Visualise the distribution of the overall across the different districts 
+
+- We can see the histogram for Ibanda is positively skewed 
+``` {r echo=FALSE}
+hist(Ibanda$OVERALL, main = "Ibanda overall variety performance", xlab = "Overall performance", ylab = NULL)
+```
+
+- Mityana is negatively skewed 
+``` {r echo=FALSE}
+hist(Mityana$OVERALL, main = "Mityana overall variety performance", xlab = "Overall performance", ylab = NULL)
+```
+
+``` {r echo=FALSE}
+hist(Mukono$OVERALL, main = "Mukono overall variety performance", xlab = "Overall performance", ylab = NULL)
+```
+
+- The histogram for Mukono is positively skewed 
+
+## **2.Showing the relationships between the variables** 
+``` {r echo=FALSE}
+ggplot(dataset, aes(x = dataset$"FLAVOR", y = dataset$"FLAVOR")) + 
+  geom_point() + labs(title = "Effect of flavor on overall coffee performance", x = "Overall performance", y = "Flavor")
+#Looking at effect of flavor on performance per district
+ggplot(Ibanda, aes(x = Ibanda$"FLAVOR", y = Ibanda$"FLAVOR")) + 
+  geom_point() + labs(title = "Effect of flavor on coffee performance in Ibanda", x = "Overall performance", y = "Flavor")
+
+ggplot(Mityana, aes(x = Mityana$"FLAVOR", y = Mityana$"FLAVOR")) + 
+  geom_point() + labs(title = "Effect of flavor on coffee performance in Mityana", x = "Overall performance", y = "Flavor")
+
+ggplot(Mukono, aes(x = Mukono$"FLAVOR", y = Mukono$"FLAVOR")) + 
+  geom_point() + labs(title = "Effect of flavor on coffee performance in Mukono", x = "Overall performance", y = "Flavor")
+```
+
+
+
+
+## **3. PERFORMANCE BY VARIETY AND DISTRICT**
+**Across districts;**
+*Compute medians of districts to show performance since Medians are most suitable rather than the means which were skewed*
+
+
+*IBANDA MEAN*
+```{r}
+Ibanda_mean <- mean(Ibanda$OVERALL)
+string1<-"Ibanda overall mean is"
+result1=paste(string1,Ibanda_mean)
+print(result1)
+```
+*MITYANA MEAN*
+```{r}
+Mityana_mean <- mean(Mityana$OVERALL)
+string2<-"Mityana overall mean is"
+result2=paste(string2,Mityana_mean)
+print(result2)
+```
+*MUKONO MEAN*
+```{r}
+Mukono_mean <- mean(Mukono$OVERALL)
+string3<-"Mukono overall mean is"
+result3=paste(string3,Mukono_mean)
+print(result3)
+```
+
+```{r}
+Ibanda_median <- median(Ibanda$OVERALL)
+ibanda1<-"Ibanda overall median is"
+result4=paste(ibanda1,Ibanda_median)
+print(result4)
+
+Mityana_median <- median(Mityana$OVERALL)
+Mityana1<-"Mityana overall median is"
+result5=paste(Mityana1,Mityana_median)
+print(result5)
+
+Mukono_median <- median(Mukono$OVERALL)
+Mukono1<-"Mukono overall median is"
+result6=paste(Mukono1,Mukono_median)
+print(result6)
+```
+
+**Combine the districts, means or medians**
+```{r}
+Districts <- c("Ibanda", "Mityana", "Mukono")
+Means <- c(Ibanda_mean, Mityana_mean, Mukono_mean)
+```
+*OR*
+```{r}
+Median <- c(Ibanda_median, Mityana_median, Mukono_median)
+```
+
+**Make a dataframe of the districts and means**
+```{r}
+Districts_means <- data.frame(Districts,Means)
+```
+
+**OR: Make a dataframe of the districts and medians**
+```{r}
+Districts_medians <- data.frame(Districts,Median)
+```
+
+*A Plot of the results*
+
+```{r}
+ggplot(Districts_means, aes(Districts,Means,group=1)) +
+  geom_line() + geom_point() + labs(title = "Mean overall performance of varieties across districts")
+```
+
+**OR Using median**
+ggplot(Districts_medians, aes(Districts, Median,group=1)) +
+  geom_line() + geom_point() + labs(title = "Median overall performance of varieties across districts")
+
+### **Performance of each variety**
+*Transform the dataset to subselect varieties individually*
+```{r}
+KR3 <- dataset[dataset$VARIETY == "KR3",]
+KR4 <- dataset[dataset$VARIETY == "KR4",]
+KR5 <- dataset[dataset$VARIETY == "KR5",]
+KR6 <- dataset[dataset$VARIETY == "KR6",]
+KR7 <- dataset[dataset$VARIETY == "KR7",]
+```
+
+**Compute overall means of each variety**
+```{r}
+mean_KR3 <- mean(KR3$OVERALL)
+mean_KR4 <- mean(KR4$OVERALL)
+mean_KR5 <- mean(KR5$OVERALL)
+mean_KR6 <- mean(KR6$OVERALL)
+mean_KR7 <- mean(KR7$OVERALL)
+```
+
+### OR
+
+**Compute overall medians of each variety**
+```{r}
+median_KR3 <- median(KR3$OVERALL)
+median_KR4 <- median(KR4$OVERALL)
+median_KR5 <- median(KR5$OVERALL)
+median_KR6 <- median(KR6$OVERALL)
+median_KR7 <- median(KR7$OVERALL)
+```
+
+
+**Combine the varieties, means or medians**
+```{r}
+Varieties <- c("KR3", "KR4", "KR5", "KR6", "KR7")
+Variety_means <- c(mean_KR3,mean_KR4,mean_KR5,mean_KR6,mean_KR7)
+Variety_median <- c(median_KR3, median_KR4, median_KR5, median_KR6, median_KR7)
+```
+
+**Create a dataframe of Varieties and Variety_means**
+```{r}
+Dataframe_1 <- data.frame(Varieties, Variety_means)
+```
+
+### OR
+**Create a datframe of Varieties and Variety_median**
+```{r}
+Dataframe_2 <- data.frame(Varieties, Variety_median)
+```
+
+*A Plot of the results*
+```{r}
+ggplot(Dataframe_1, aes(Varieties, Variety_means, group=1)) +
+  geom_line() + geom_point() + labs (title = "Mean overall variety performance")
+
+```
+
+## **4. CENTRAL TENDENCY/DISTRIBUTION OF EACH VARIABLE.**
+### Using a boxplot
+**Distribution of overall**
+```{r}
+boxplot(dataset$OVERALL, main = "OVERALL PERFORMANCE OF VARIETIES", ylab = "overall scores")
+```
+ 
+## **QUESTION 5: NORMAL DISTRIBUTION TESTS**
+*Test the overall variable for normal distribution using the Shapiro-wilk test*
+*Null hypothesis based on research question: The overall performance of varieties across* *districts is normally distributed. p-value >= 0.05* 
+*Alternative hypothesis: Overall performance is not normally distributed across districts. p-value =<0.05 *
+```{r}
+shapiro.test(dataset$OVERALL)
+```
+*W = 0.95674, p-value = 0.01189*
+
+*Distribution can also be visualised using a  Q-Q plots (quantile-quantile plots). *
+*Q-Q plots draw the correlation between a given sample and the normal distribution.*
+
+
+
+*The data is not normally distributed, it’s recommended to use the non parametric one-sample Wilcoxon rank test.*
+          **WILCOXON ONE-SAMPLE TEST**
+*The one-sample Wilcoxon signed rank test is a non-parametric alternative to one-sample t-test when the data cannot be assumed to be normally distributed. *
+*it is Used to determine whether the median of the sample is equal to a known standard value (i.e. theoretical value).*
+**Looking at the article m =0.8**
+```{r}
+res <- wilcox.test(dataset$OVERALL, mu = 0.8)
+res
+```
+
+
