@@ -1,0 +1,189 @@
+---
+output:
+  html_document: default
+  word_document: default
+---
+# *ASSIGNMENT 2: ANSWER SCRIPT*
+**Load the following Packages**
+```{r}
+library(readxl)
+library(tidyverse)
+library(dplyr)
+library(ggpubr)
+```
+*Importing  and viewing the dataset*
+```{r}
+Assignment2_dataset <- read_excel(("C:/Users/DELL/Desktop/RAssignment2/Assignment2_dataset.xlsx"))
+View(Assignment2_dataset)
+```
+
+## **Question 1**
+**The missing values are removed ussing the two functios shown below**
+```{r}
+Assignment2_New <- na.omit(Assignment2_dataset)
+```
+### OR
+```{r}
+Assignment2_New <- na.exclude(Assignment2_dataset) 
+```
+
+
+## **Question 2**
+*Show relationship between prices and perceptions*
+*define values for perception*
+*compute the percentage of each perception that characterize our responses to price.*
+
+```{r}
+Positive <- ((length(c(Assignment2_New$P[Assignment2_New$P == "Positive"])))/(length(c(Assignment2_New$P))))*100
+Negative <- ((length(c(Assignment2_New$P[Assignment2_New$P == "Negative"])))/(length(c(Assignment2_New$P))))*100
+Somewhat_Positive <- ((length(c(Assignment2_New$P[Assignment2_New$P == "SP"])))/(length(c(Assignment2_New$P))))*100
+Somewhat_Negative <- ((length(c(Assignment2_New$P[Assignment2_New$P == "SN"])))/(length(c(Assignment2_New$P))))*100
+No_Response <- ((length(c(Assignment2_New$P[Assignment2_New$P == "NR"])))/(length(c(Assignment2_New$P))))*100
+```
+
+**Displaying the percentage of all perceptions**   
+*Negative*   
+*Somewhat_Negative*   
+*Positive*   
+*Somewhat_Positive*   
+*No_Response*   
+
+### covariation between perception and price
+```{r}
+ggplot(data = Assignment2_New, mapping = aes(x = price)) +
+  geom_freqpoly(mapping = aes(color = P), binwidth = 500)
+```
+
+## **Question3**
+*Comparing perception change(PC) and diamond quality (cut)*
+
+
+```{r}
+# **covariation between perception change and diamond quality**
+Perception_Change <- Assignment2_New$PC
+Cut <- Assignment2_New$cut
+ggplot(data = Assignment2_New) +
+  geom_count(mapping = aes(x = Cut, y = Perception_Change))
+```
+
+
+## **Question 4**
+# *A boxplot of all the variables*
+```{r}
+boxplot(Assignment2_New$carat, Assignment2_New$depth, Assignment2_New$price, Assignment2_New$x, Assignment2_New$y, names=c("carat", "depth","price", "x", "y"), horizontal=TRUE, col="blue", main="Distribution of variables", xlab="Values", ylab="Variables")
+```
+
+*OR ,you can generate individual box plots to better view the outliers for each variable.*
+*Below is one of such examples*
+```{r,eval=FALSE}
+boxplot(Assignment2_New$carat)
+```
+
+## **Question5**
+### **using the IQR method**
+*calculate the IQR for price*
+```{r,include=FALSE}
+IQRprices <- IQR(Assignment2_New$price)
+IQRprices
+```
+
+*calculate the quartiles for price*
+```{r}
+quartileprice <- quantile(Assignment2_New$price, probs=c(.25, .75), na.rm = FALSE)
+quartileprice
+```
+
+*calculate the upper and lower limits*
+```{r}
+pricelower <- quartileprice[1] - 1.5*IQRprices
+priceupper <- quartileprice[2] + 1.5*IQRprices
+pricelower
+priceupper
+```
+
+*filtering out the outliers for price*
+```{r}
+price_no_outliers <- subset(Assignment2_New, Assignment2_New$price > priceupper | Assignment2_New$price < pricelower)
+price_no_outliers
+boxplot(price_no_outliers$price)
+```
+
+*saving the new dataframe with no outliers*
+```{r}
+Dataset <- Assignment2_New[Assignment2_New$price < priceupper & Assignment2_New$price > pricelower,]
+```
+
+
+## **Question 6**
+** creating a new csv **
+
+```{r}
+write.csv(Dataset, file="C:/Users/DELL/Desktop/A94166/Moga_Muzamil.csv")
+
+```
+
+## **Question 7**
+```{r, eval=FALSE}
+ggplot(Dataset, aes(x=cut, y=depth)) + geom_bar(stat="identity", fill="red") + labs(title="Relationship between the cut and the depth", x="Cut", y="depth")
+```
+
+## **Question 8**
+*Compare mean, median and mode*
+**Calculating the mean and median of the variable "carat" in the diamonds dataset**
+```{r, eval=FALSE}
+mean(Dataset$carat,  na.rm = TRUE)
+median(Dataset$carat,  na.rm = TRUE)
+```
+
+### OR 
+
+*Q-Q plots draw the correlation between a given sample and the normal distribution.*
+```{r,eval=FALSE}
+ggqqplot(Dataset$carat, ylab = "Diamond carat",
+         ggtheme = theme_minimal())
+```
+
+
+### wilcoxon test on carat
+```{r,eval=FALSE}
+res <- wilcox.test(Dataset$carat, mu = 0) #mu is theoretical mean (0)
+```
+
+## **QUESTION 9**
+*Compute the variance between three groups; diamond carat, perception change and price and view the groups*
+
+
+```{r,echo=FALSE}
+groups <- Dataset[,c("carat", "PC", "price")] 
+groups
+sample <- sample_n(groups, 100)
+sample
+
+x <- factor(sample$PC)
+x
+levels(x)
+x <- ordered(x, levels=c("Negative","Positive","SP","Positve","NR","SN"))# the order of the levels
+group_by(groups, PC) %>% 
+  summarise(
+    mean=mean(price), 
+    sd=sd(price), n=n())
+    
+ggline(groups, x = "PC", y = "price", 
+        add = c("mean_se"),
+        order = c("Negative","Positive","Positve","NR","SN","SP"),
+        ylab = "Price", xlab="Perception Change", 
+        title = "Line plot of the groups")
+
+```
+
+# Compute the varience.
+```{r, echo=FALSE}
+anova <- aov(price ~ PC, data = groups)
+summary(anova)
+```
+
+# **Question 9b**
+```{r}
+TukeyHSD(anova, conf.level = .95)
+plot(TukeyHSD(anova, conf.level = .95))
+```
