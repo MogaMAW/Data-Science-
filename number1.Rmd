@@ -265,7 +265,7 @@ ggplot(Dataframe_1, aes(Varieties, Variety_means, group=1)) +
 boxplot(dataset$OVERALL, main = "OVERALL PERFORMANCE OF VARIETIES", ylab = "overall scores")
 ```
  
-## **QUESTION 5: NORMAL DISTRIBUTION TESTS**
+### **QUESTION 5: NORMAL DISTRIBUTION TESTS**
 *Test the overall variable for normal distribution using the Shapiro-wilk test*
 *Null hypothesis based on research question: The overall performance of varieties across* *districts is normally distributed. p-value >= 0.05* 
 *Alternative hypothesis: Overall performance is not normally distributed across districts. p-value =<0.05 *
