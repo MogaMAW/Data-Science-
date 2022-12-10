@@ -18,7 +18,7 @@ library(tidyverse)
 library(dplyr)
 library(ggpubr)
 ```
-# Assignment1 
+## Assignment1 
 ### Population of the data set are the origins 
 
 ### Samples are the varieties 
