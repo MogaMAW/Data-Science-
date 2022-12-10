@@ -135,7 +135,7 @@ mean(Dataset$carat,  na.rm = TRUE)
 median(Dataset$carat,  na.rm = TRUE)
 ```
 
-### OR 
+#### OR 
 
 *Q-Q plots draw the correlation between a given sample and the normal distribution.*
 ```{r,eval=FALSE}
