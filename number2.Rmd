@@ -17,7 +17,7 @@ Assignment2_dataset <- read_excel(("C:/Users/DELL/Desktop/RAssignment2/Assignmen
 View(Assignment2_dataset)
 ```
 
-## **Question 1**
+### **Question 1**
 **The missing values are removed ussing the two functios shown below**
 ```{r}
 Assignment2_New <- na.omit(Assignment2_dataset)
