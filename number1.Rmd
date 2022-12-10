@@ -109,7 +109,7 @@ hist(Mukono$OVERALL, main = "Mukono overall variety performance", xlab = "Overal
 
 - The histogram for Mukono is positively skewed 
 
-## **2.Showing the relationships between the variables** 
+### **2.Showing the relationships between the variables** 
 ``` {r echo=FALSE}
 ggplot(dataset, aes(x = dataset$"FLAVOR", y = dataset$"FLAVOR")) + 
   geom_point() + labs(title = "Effect of flavor on overall coffee performance", x = "Overall performance", y = "Flavor")
