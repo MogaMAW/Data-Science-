@@ -34,7 +34,7 @@ boxplot(co2_emissions_dataset$X2008)$out
 #since not normallly distributed, hence outliers.
 
 
-#question6
+#question6.
 #how can you filter out the outliers
 boxplot(co2_emissions_dataset$X2008)
 boxplot(co2_emissions_dataset$X2008)$out
