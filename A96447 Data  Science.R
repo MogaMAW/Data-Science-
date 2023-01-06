@@ -71,7 +71,7 @@ co2_emissions_dataset_no_outlier <- subset(co2_emissions_dataset, X2008 < upperL
 boxplot(co2_emissions_dataset_no_outlier$X2008)
 
 
-#question7
+#question7.
 #Display the covariation between one categorical variable and one finite variable in the year 2018 of dataset 1
 #using the ggplot2 package
 library(ggplot2)
