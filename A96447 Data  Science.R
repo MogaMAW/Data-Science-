@@ -77,7 +77,7 @@ boxplot(co2_emissions_dataset_no_outlier$X2008)
 library(ggplot2)
 ggplot(co2_emissions_dataset, aes(x = country, y = X2018)) + geom_point() + geom_smooth(method = "lm", se = FALSE) + labs(title = "Covariation between country and co2_emission in 2018", x = "country", y = "co2_emission")
 
-#question8
+#question8.
 #Show the central tendency dispersal of your dataset. Which years of co2 emissions show normal distribution and which ones don't?
 #using the ggplot2 package
 library(ggplot2)
