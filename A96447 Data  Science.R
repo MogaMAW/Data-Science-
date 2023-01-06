@@ -99,7 +99,7 @@ shapiro.test(co2_emissions_dataset$X2008)
 ggqqplot(co2_emissions_dataset$X2008, xlab = "Normal Distribution", ylab = "co2_emission", main = "Q-Q Plot of co2_emission in 2008")
 
 # The data is not normally distributed, it’s recommended to use the non parametric one-sample Wilcoxon rank test.
-#### WILCOXON ONE-SAMPLE TEST#####
+#### WILCOXON ONE-SAMPLE TEST #####
 #The one-sample Wilcoxon signed rank test is a non-parametric 
 #alternative to one-sample t-test when the data cannot be 
 #assumed to be normally distributed. 
