@@ -7,7 +7,7 @@ co2_emissions_dataset <- read.csv("co2_emissions_tonnes_per_person.csv")
 co2_emissions_dataset <- na.omit(co2_emissions_dataset)
 
 
-#question2.
+#question2
 #get a summery of the co2_emission over the years displayed
 summary(co2_emissions_dataset)
 
