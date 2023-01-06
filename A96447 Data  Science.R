@@ -11,7 +11,7 @@ co2_emissions_dataset <- na.omit(co2_emissions_dataset)
 #get a summery of the co2_emission over the years displayed
 summary(co2_emissions_dataset)
 
-#question3.
+#question3
 #Asses the mode of the emission in 2008
 #mode(co2_emissions_dataset$X2008)
 
