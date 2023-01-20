@@ -29,7 +29,7 @@ ggplot(variable_data, aes(x = variables, y = variable.mean)) +
     geom_bar(stat = "identity", fill = "#0044ff") + labs(title = "Mean of the variables", x = "Variables", y = "Mean")
 
 
-##descriptive statistics median overall
+##descriptive statistics median overall.
 Aromamedian <- median(Coffee_data$"FRAGRANCE/AROMA")
 Flavormedian <- median(Coffee_data$FLAVOR)
 SaltAcidmedian <- median(Coffee_data$"SALT/ ACID")
