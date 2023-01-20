@@ -47,7 +47,7 @@ ggplot(variable_data1, aes(x = variables, y = variable.median)) +
     geom_bar(stat = "identity", fill = "#500530") + labs(title = "Median of the variables", x = "Variables", y = "Median")
 
 ##
-#descriptive statistics range overall
+#descriptive statistics range overall.
 Aromarange <- range(Coffee_data$"FRAGRANCE/AROMA")
 Flavorrange <- range(Coffee_data$FLAVOR)
 SaltAcidrange <- range(Coffee_data$"SALT/ ACID")
