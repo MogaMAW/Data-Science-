@@ -42,7 +42,7 @@ variable.median <- c(Aromamedian,Flavormedian,SaltAcidmedian,BitterSweetmedian,A
 variable_data1 <- data.frame(variables,variable.median)
 View(variable_data1)
 
-#plotting the median of the variables
+#plotting the median of the variables.
 ggplot(variable_data1, aes(x = variables, y = variable.median)) + 
     geom_bar(stat = "identity", fill = "#500530") + labs(title = "Median of the variables", x = "Variables", y = "Median")
 
