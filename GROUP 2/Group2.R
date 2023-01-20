@@ -82,7 +82,7 @@ ggplot(variable_data_mukono, aes(x = variables, y = variable.Mukonomean)) +
     geom_bar(stat = "identity", fill = "red") + labs(title = "Mean of the variables in Mukono", x = "Variables", y = "Mean")
 
 #
-#descriptive statistics mukono median overall
+#descriptive statistics mukono median overall.
 mukonoAromamedian <- median(ORIGIN.Mukono$"FRAGRANCE/AROMA")
 mukonoFlavormedian <- median(ORIGIN.Mukono$FLAVOR)
 mukonoSaltAcidmedian <- median(ORIGIN.Mukono$"SALT/ ACID")
