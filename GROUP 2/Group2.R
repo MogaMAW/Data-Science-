@@ -60,7 +60,7 @@ variable.range <- c(Aromarange,Flavorrange,SaltAcidrange,BitterSweetrange,Aftert
 variable_data1 <- data.frame(variables,variable.range)
 View(variable_data1)
 
-#plotting the range of the variables
+#plotting the range of the variables.
 ggplot(variable_data1, aes(x = variables, y = variable.range)) + 
     geom_bar(stat = "identity", fill = "#e7380c") + labs(title = "range of the variables", x = "Variables", y = "Range")
 
