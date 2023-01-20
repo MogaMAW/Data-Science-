@@ -77,7 +77,7 @@ variable.Mukonomean <- c(mukonoAromaMean,mukonoFlavorMean,mukonoSaltAcid,mukonoB
 
 variable_data_mukono <- data.frame(variables,variable.Mukonomean)
 View(variable_data_mukono)
-#plotting the mean of the variables
+#plotting the mean of the variables.
 ggplot(variable_data_mukono, aes(x = variables, y = variable.Mukonomean)) + 
     geom_bar(stat = "identity", fill = "red") + labs(title = "Mean of the variables in Mukono", x = "Variables", y = "Mean")
 
