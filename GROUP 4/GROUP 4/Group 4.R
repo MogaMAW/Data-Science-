@@ -42,7 +42,7 @@ Ibanda.FLAVOR <- sum(ORIGIN.Ibanda$FLAVOR)
 Mityana.FLAVOR <- sum(ORIGIN.Mityana$FLAVOR)
 ORIGIN.Flavor<-c(Mukono.FLAVOR, Ibanda.FLAVOR, Mityana.FLAVOR)
 
-# salt/Acid  occurence in diffrent districts
+# salt/Acid  occurence in diffrent districts.
 Mukono.SALT_ACID <- sum(ORIGIN.Mukono$"SALT/ ACID")
 Ibanda.SALT_ACID <- sum(ORIGIN.Ibanda$"SALT/ ACID")
 Mityana.SALT_ACID <- sum(ORIGIN.Mityana$"SALT/ ACID")
