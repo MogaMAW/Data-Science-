@@ -20,7 +20,7 @@ Mukono.overall <- sum(ORIGIN.Mukono$OVERALL)
 Ibanda.overall <- sum(ORIGIN.Ibanda$OVERALL)
 Mityana.overall <- sum(ORIGIN.Mityana$OVERALL)
 
-# putting into a dataframe
+# putting into a dataframe.
 ORIGIN.Overall_challeges <- c(Mukono.overall, Ibanda.overall, Mityana.overall)
 
 ORIGINS<-c("Mityana", "Ibanda", "Mukono")
