@@ -30,7 +30,7 @@ View(ORIGIN.Data)# collection one
 ORIGIN.ggplot<- ggplot(ORIGIN.Data, aes(ORIGINS, ORIGIN.Overall_challeges))
 ORIGIN.ggplot + geom_col(fill = "skyblue" ) + labs(title = "ORIGINS against overall_challenges")# Graph one
 
-# aroma occurance in diffrent districts
+# aroma occurance in diffrent districts.
 Mukono.FRAGRANCE_AROMA <- sum(ORIGIN.Mukono$"FRAGRANCE/AROMA")
 Ibanda.FRAGRANCE_AROMA <- sum(ORIGIN.Ibanda$"FRAGRANCE/AROMA")
 Mityana.FRAGRANCE_AROMA  <- sum(ORIGIN.Mityana$"FRAGRANCE/AROMA")
