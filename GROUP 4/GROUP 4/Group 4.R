@@ -5,7 +5,6 @@ View(work)
 
 library(ggplot2)
 
-
 ORIGIN.Mukono <- work[work$ORIGIN == "Mukono",]
 View(ORIGIN.Mukono)
 
