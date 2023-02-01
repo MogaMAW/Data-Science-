@@ -13,7 +13,6 @@ ORIGIN.Ibanda <-work[work$ORIGIN == "Ibanda",]
 View(ORIGIN.Ibanda)
 
 ORIGIN.Mityana <-work[work$ORIGIN == "Mityana",]
-
 View(ORIGIN.Mityana)
 
 Mukono.overall <- sum(ORIGIN.Mukono$OVERALL)
