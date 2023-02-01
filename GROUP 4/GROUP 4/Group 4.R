@@ -34,7 +34,7 @@ Ibanda.FRAGRANCE_AROMA <- sum(ORIGIN.Ibanda$"FRAGRANCE/AROMA")
 Mityana.FRAGRANCE_AROMA  <- sum(ORIGIN.Mityana$"FRAGRANCE/AROMA")
 ORIGIN.aroma<-c(Mukono.FRAGRANCE_AROMA , Ibanda.FRAGRANCE_AROMA , Mityana.FRAGRANCE_AROMA)
 
-# FLAVOR occurance in diffrent districts.
+#FLAVOR occurance in diffrent districts.
 Mukono.FLAVOR <- sum(ORIGIN.Mukono$FLAVOR)
 Ibanda.FLAVOR <- sum(ORIGIN.Ibanda$FLAVOR)
 Mityana.FLAVOR <- sum(ORIGIN.Mityana$FLAVOR)
