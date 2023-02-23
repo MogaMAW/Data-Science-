@@ -22,7 +22,7 @@ getmode <- function(v) {
 v <- co2_emissions_dataset$X2008
 mode2008 <- getmode(v)
 
-#question5
+#question5.
 #. Are there any unusual observations within the variables of dataset1? Display these outliers if any
 #boxplot of the co2_emission over the years
 #boxplot for the co2_emission over the years form X1800 to X2018	
