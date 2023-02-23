@@ -27,7 +27,7 @@ mode2008 <- getmode(v)
 #boxplot of the co2_emission over the years
 #boxplot for the co2_emission over the years form X1800 to X2018	
 
-#takng a sample of 7 years
+#takng a sample of 7 years.
 boxplot(co2_emissions_dataset$X1800,co2_emissions_dataset$X1801, co2_emissions_dataset$X1802, co2_emissions_dataset$X1803, co2_emissions_dataset$X1804, co2_emissions_dataset$X1805, co2_emissions_dataset$X1806, names = c("1800", "1801", "1802", "1803", "1804", "1805", "1806"), horizontal=TRUE, col="blue", main="Distribution of in seven years", xlab="co2_emission", ylab="years")
 #boxplot of the sample
 boxplot(co2_emissions_dataset$X2008)$out
