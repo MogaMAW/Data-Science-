@@ -2,7 +2,7 @@ library(readxl)
 library(ggplot2)
 Coffee_data <- read_excel(("C:/Users/DELL/Desktop/Data-Science-/Group Assignment 1_Cup sensory results-CWDr lines (1).xlsx"))
 View(Coffee_data)
-#####part a######
+#####part a ######
 Origin.Mukono <- Coffee_data[Coffee_data$ORIGIN == "Mukono",]
 View(Origin.Mukono)
 
